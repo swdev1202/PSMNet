@@ -95,7 +95,6 @@ def main():
        imgR_o = (skimage.io.imread(test_right_img[inx]))
        imgL = processed(imgL_o).numpy()
        imgR = processed(imgR_o).numpy()
-      # print(imgL.shape)
        imgL = np.reshape(imgL,[1,3,imgL.shape[1],imgL.shape[2]])
        imgR = np.reshape(imgR,[1,3,imgR.shape[1],imgR.shape[2]])
 
