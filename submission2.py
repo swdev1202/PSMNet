@@ -105,8 +105,7 @@ def main():
        # pad to (2464, 2080)
        top_pad = 2080-imgL.shape[2]
        left_pad = 2464-imgL.shape[3]
-       top_pad = 0
-       left_pad = 0
+       
        imgL = np.lib.pad(imgL,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
        imgR = np.lib.pad(imgR,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
 
