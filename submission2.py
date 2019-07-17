@@ -95,11 +95,12 @@ def main():
        imgL_o = (skimage.io.imread(test_left_img[inx]))
        imgR_o = (skimage.io.imread(test_right_img[inx]))
 
-       imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 4, imgL_o.shape[1] / 4), anti_aliasing=True)
-       imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 4, imgR_o.shape[1] / 4), anti_aliasing=True)
+       imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 4, imgL_o.shape[1] / 4), anti_aliasing=True).astype(np.double)
+       imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 4, imgR_o.shape[1] / 4), anti_aliasing=True).astype(np.double)
 
        imgL = processed(imgL_o).numpy()
        imgR = processed(imgR_o).numpy()
+
        imgL = np.reshape(imgL,[1,3,imgL.shape[1],imgL.shape[2]])
        imgR = np.reshape(imgR,[1,3,imgR.shape[1],imgR.shape[2]])
 
