@@ -92,12 +92,12 @@ def main():
 
    for inx in range(len(test_left_img)):
 
-       imgL_o = (skimage.io.imread(test_left_img[inx]).astype('double'))
+       imgL_o = (skimage.io.imread(test_left_img[inx]).astype('float32'))
        print(type(imgL_o[0][0][0]))
-       imgR_o = (skimage.io.imread(test_right_img[inx]).astype('double'))
+       imgR_o = (skimage.io.imread(test_right_img[inx]).astype('float32'))
 
-       imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 4, imgL_o.shape[1] / 4), anti_aliasing=True)
-       imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 4, imgR_o.shape[1] / 4), anti_aliasing=True)
+       imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 4, imgL_o.shape[1] / 4), anti_aliasing=True).astype('float32')
+       imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 4, imgR_o.shape[1] / 4), anti_aliasing=True).astype('float32')
 
        print(type(imgL_o[0][0][0]))
 
