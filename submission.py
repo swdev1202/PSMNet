@@ -92,6 +92,7 @@ def main():
 
        imgL_o = (skimage.io.imread(test_left_img[inx]).astype('float32'))
        imgR_o = (skimage.io.imread(test_right_img[inx]).astype('float32'))
+
        imgL = processed(imgL_o).numpy()
        imgR = processed(imgR_o).numpy()
 
@@ -101,18 +102,16 @@ def main():
        imgR = np.reshape(imgR,[1,3,imgR.shape[1],imgR.shape[2]])
 
        # pad to (384, 1248)
-       top_pad = 1536-imgL.shape[2]
+       top_pad = 768-imgL.shape[2]
        left_pad = 1248-imgL.shape[3]
        imgL = np.lib.pad(imgL,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
        imgR = np.lib.pad(imgR,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
-       
-       print(imgL.shape)
 
        start_time = time.time()
        pred_disp = test(imgL,imgR)
        print('time = %.2f' %(time.time() - start_time))
 
-       top_pad   = 1536-imgL_o.shape[0]
+       top_pad   = 768-imgL_o.shape[0]
        left_pad  = 1248-imgL_o.shape[1]
        img = pred_disp[top_pad:,:-left_pad]
        skimage.io.imsave(test_left_img[inx].split('/')[-1],(img*256).astype('uint16'))
