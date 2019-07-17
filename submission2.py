@@ -28,7 +28,7 @@ parser.add_argument('--datapath', default='/home/cmpe/PilotA/PSMNet/dataset/argo
                     help='select model')
 parser.add_argument('--loadmodel', default=None,
                     help='loading model')
-parser.add_argument('--model', default='stackhourglass',
+parser.add_argument('--model', default='basic',
                     help='select model')
 parser.add_argument('--maxdisp', type=int, default=192,
                     help='maxium disparity')
@@ -74,9 +74,11 @@ def test(imgL,imgR):
 
         if args.cuda:
            imgL = torch.FloatTensor(imgL).cuda()
-           imgR = torch.FloatTensor(imgR).cuda()     
+           imgR = torch.FloatTensor(imgR).cuda()  
+           print("cuda here")   
 
         imgL, imgR= Variable(imgL), Variable(imgR)
+        print(imgL)
 
         with torch.no_grad():
             output = model(imgL,imgR)
@@ -106,6 +108,8 @@ def main():
        imgL = np.lib.pad(imgL,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
        imgR = np.lib.pad(imgR,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
 
+       print(imgL.shape)
+       print(imgR.shape)
        start_time = time.time()
        pred_disp = test(imgL,imgR)
        print('time = %.2f' %(time.time() - start_time))
