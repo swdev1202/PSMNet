@@ -99,6 +99,9 @@ def main():
        imgL = np.reshape(imgL,[1,3,imgL.shape[1],imgL.shape[2]])
        imgR = np.reshape(imgR,[1,3,imgR.shape[1],imgR.shape[2]])
 
+       print(imgL.shape)
+       print(imgR.shape)
+
        # pad to (2464, 2080)
        top_pad = 2464-imgL.shape[2]
        left_pad = 2080-imgL.shape[3]
