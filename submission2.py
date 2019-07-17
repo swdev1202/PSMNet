@@ -99,6 +99,9 @@ def main():
        imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 4, imgL_o.shape[1] / 4), anti_aliasing=True)
        imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 4, imgR_o.shape[1] / 4), anti_aliasing=True)
 
+       imgL_o = torch.from_numpy(imgL_o).double()
+       imgR_o = torch.from_numpy(imgR_o).double()
+
        print(type(imgL_o[0][0][0]))
 
        imgL = processed(imgL_o).numpy()
