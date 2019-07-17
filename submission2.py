@@ -98,9 +98,9 @@ def main():
        imgL = np.reshape(imgL,[1,3,imgL.shape[1],imgL.shape[2]])
        imgR = np.reshape(imgR,[1,3,imgR.shape[1],imgR.shape[2]])
 
-       # pad to (384, 1248)
-       #top_pad = 384-imgL.shape[2]
-       #left_pad = 1248-imgL.shape[3]
+       # pad to (2464, 2080)
+       top_pad = 2464-imgL.shape[2]
+       left_pad = 2080-imgL.shape[3]
        top_pad = 0
        left_pad = 0
        imgL = np.lib.pad(imgL,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
@@ -110,10 +110,10 @@ def main():
        pred_disp = test(imgL,imgR)
        print('time = %.2f' %(time.time() - start_time))
 
-       #top_pad   = 384-imgL_o.shape[0]
-       #left_pad  = 1248-imgL_o.shape[1]
-       #img = pred_disp[top_pad:,:-left_pad]
-       #skimage.io.imsave(test_left_img[inx].split('/')[-1],(img*256).astype('uint16'))
+       top_pad   = 2464-imgL_o.shape[0]
+       left_pad  = 2080-imgL_o.shape[1]
+       img = pred_disp[top_pad:,:-left_pad]
+       skimage.io.imsave(test_left_img[inx].split('/')[-1],(img*256).astype('uint16'))
        skimage.io.imsave(test_left_img[inx].split('/')[-1],(pred_disp*256).astype('uint16'))
 
 if __name__ == '__main__':
