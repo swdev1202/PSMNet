@@ -96,8 +96,8 @@ def main():
        print(type(imgL_o[0][0][0]))
        imgR_o = (skimage.io.imread(test_right_img[inx]).astype('float32'))
 
-       imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 4, imgL_o.shape[1] / 4), anti_aliasing=True).astype('float32')
-       imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 4, imgR_o.shape[1] / 4), anti_aliasing=True).astype('float32')
+       imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 2, imgL_o.shape[1] / 4), anti_aliasing=True).astype('float32')
+       imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 2, imgR_o.shape[1] / 4), anti_aliasing=True).astype('float32')
 
        print(type(imgL_o[0][0][0]))
 
@@ -111,7 +111,7 @@ def main():
        print(imgR.shape)
 
        # pad to (544 , 640)
-       top_pad = 544-imgL.shape[2]
+       top_pad = 1056-imgL.shape[2]
        left_pad = 640-imgL.shape[3]
 
        imgL = np.lib.pad(imgL,((0,0),(0,0),(top_pad,0),(0,left_pad)),mode='constant',constant_values=0)
@@ -123,11 +123,11 @@ def main():
        pred_disp = test(imgL,imgR)
        print('time = %.2f' %(time.time() - start_time))
 
-       top_pad   = 544-imgL_o.shape[0]
+       top_pad   = 1056-imgL_o.shape[0]
        left_pad  = 640-imgL_o.shape[1]
        img = pred_disp[top_pad:,:-left_pad]
        skimage.io.imsave(test_left_img[inx].split('/')[-1],(img*256).astype('uint16'))
-       skimage.io.imsave(test_left_img[inx].split('/')[-1],(pred_disp*256).astype('uint16'))
+       #skimage.io.imsave(test_left_img[inx].split('/')[-1],(pred_disp*256).astype('uint16'))
 
 if __name__ == '__main__':
    main()
