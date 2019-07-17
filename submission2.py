@@ -28,7 +28,7 @@ parser.add_argument('--datapath', default='/home/cmpe/PilotA/PSMNet/dataset/argo
                     help='select model')
 parser.add_argument('--loadmodel', default=None,
                     help='loading model')
-parser.add_argument('--model', default='basic',
+parser.add_argument('--model', default='stackhourglass',
                     help='select model')
 parser.add_argument('--maxdisp', type=int, default=192,
                     help='maxium disparity')
@@ -78,7 +78,6 @@ def test(imgL,imgR):
            print("cuda here")   
 
         imgL, imgR= Variable(imgL), Variable(imgR)
-        print(imgL)
 
         with torch.no_grad():
             output = model(imgL,imgR)
