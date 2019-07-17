@@ -92,15 +92,12 @@ def main():
 
    for inx in range(len(test_left_img)):
 
-       imgL_o = (skimage.io.imread(test_left_img[inx]))
+       imgL_o = (skimage.io.imread(test_left_img[inx]).astype('double'))
        print(type(imgL_o[0][0][0]))
-       imgR_o = (skimage.io.imread(test_right_img[inx]))
+       imgR_o = (skimage.io.imread(test_right_img[inx]).astype('double'))
 
        imgL_o = skimage.transform.resize(imgL_o, (imgL_o.shape[0] / 4, imgL_o.shape[1] / 4), anti_aliasing=True)
        imgR_o = skimage.transform.resize(imgR_o, (imgR_o.shape[0] / 4, imgR_o.shape[1] / 4), anti_aliasing=True)
-
-       imgL_o = torch.from_numpy(imgL_o).double()
-       imgR_o = torch.from_numpy(imgR_o).double()
 
        print(type(imgL_o[0][0][0]))
 
